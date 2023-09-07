@@ -2,6 +2,9 @@ package jpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public abstract class User {
@@ -13,9 +16,15 @@ public abstract class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public User(String username, String password) {
+    @Column(name = "name", nullable = false)
+    private String name;
+
+
+
+    public User(String username, String password, String name) {
         this.email = username;
         this.password = password;
+        this.name = name;
     }
 
     public User() {
@@ -47,4 +56,14 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
 }

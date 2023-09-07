@@ -25,25 +25,36 @@ public class JpaTest {
 
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
+		JpaTest jpa = new JpaTest(manager);
 		try
 		{
-			Professional p = new Professional("admin@admin.org", "admin123", "admin");
-			manager.persist(p);
+			jpa.createUsersAndRDV();
+//			Professional p = new Professional("admin@admin.org", "admin123", "admin");
+//			manager.persist(p);
+//
+//			Client c = new Client("clientmail", "clientpw", "client");
+//			manager.persist(c);
+//
+//			RDV r = new RDV();
+//			r.setDuration(30);
+//			r.setName("Finances");
+//			r.setProfessional(p);
+//			r.setStart_time(new Date());
+//			r.setClient(c);
+//			manager.persist(r);
+//
+//			RDV r2 = new RDV();
+//			r2.setDuration(50);
+//			r2.setName("Finances");
+//			r2.setProfessional(p);
+//			r2.setStart_time(new Date());
+//			r2.setClient(c);
+//			c.getAppointments().add(r2);
+//			p.getAppointments().add(r2);
+//			manager.persist(r2);
+//			manager.merge(c);
+//			manager.merge(p);
 
-			Client c = new Client("clientmail", "clientpw", "client");
-			manager.persist(c);
-
-			RDV r = new RDV();
-			r.setDuration(30);
-			r.setName("Finances");
-			r.setProfessional(p);
-			r.setStart_time(new Date());
-			r.setClient(c);
-			manager.persist(r);
-//			User u = new User("admin", "admin123");
-//			manager.persist(u);
-//			User u2 = new User("admin", "admin123");
-//			manager.persist(u2);
 			// TODO create and persist entity
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,6 +66,49 @@ public class JpaTest {
 		factory.close();
 	}
 
+
+	public void createUsersAndRDV() {
+		Professional p1 = new Professional("user1@gmail.com", "user1MDP", "Alice");
+		Professional p2 = new Professional("user2@gmail.com", "user2MDP", "Bob");
+		Professional p3 = new Professional("user3@gmail.com", "user3MDP", "Charlie");
+		Professional p4 = new Professional("user4@gmail.com", "user4MDP", "Dalmatien");
+
+		Client c1 = new Client("user5@gmail", "user5MDP", "Eleonore");
+		Client c2 = new Client("user6@gmail", "user6MDP", "Florent");
+		Client c3 = new Client("user7@gmail", "user7MDP", "Gnou");
+		Client c4 = new Client("user8@gmail", "user8MDP", "Hibou");
+
+		RDV r1 = new RDV(new Date(), 60, "Docteur", p1, c4);
+		RDV r2 = new RDV(new Date(), 30, "Finances", p1, c3);
+		RDV r3 = new RDV(new Date(), 20, "Ecole", p2, c4);
+		RDV r4 = new RDV(new Date(), 50, "Informatique", p3, c2);
+
+		c2.getAppointments().add(r4);
+		c3.getAppointments().add(r2);
+		c4.getAppointments().add(r1);
+		c4.getAppointments().add(r3);
+
+		p1.getAppointments().add(r1);
+		p1.getAppointments().add(r2);
+		p2.getAppointments().add(r3);
+		p3.getAppointments().add(r4);
+
+		manager.persist(c1);
+		manager.persist(c2);
+		manager.persist(c3);
+		manager.persist(c4);
+
+		manager.persist(p1);
+		manager.persist(p2);
+		manager.persist(p3);
+		manager.persist(p4);
+
+		manager.persist(r1);
+		manager.persist(r2);
+		manager.persist(r3);
+		manager.persist(r4);
+
+	}
 
 
 

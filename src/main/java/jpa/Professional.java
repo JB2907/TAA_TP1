@@ -2,6 +2,7 @@ package jpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -9,21 +10,21 @@ import java.util.List;
 @Table(name = "Professionals")
 public class Professional extends User {
 
-    @Column(name = "name")
-    private String name;
+    private List<RDV> appointments = new ArrayList<RDV>();
 
     public Professional(String email, String password, String name) {
-        super(email, password);
-        this.name = name;
+        super(email, password, name);
     }
 
     public Professional() {}
 
-    public String getName() {
-        return name;
+    @OneToMany(mappedBy = "professional")
+    public List<RDV> getAppointments() {
+        return appointments;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAppointments(List<RDV> appointments) {
+        this.appointments = appointments;
     }
+
 }

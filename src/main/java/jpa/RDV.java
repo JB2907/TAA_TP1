@@ -15,18 +15,31 @@ public class RDV {
 
     private String name;
 
+    private Client client;
+
+    private Professional professional;
+
+    private boolean isReserved;
+
+    public RDV(Date start_time, int duration, String name, Professional professional, Client client) {
+        this.start_time = start_time;
+        this.duration = duration;
+        this.name = name;
+        this.professional = professional;
+        this.client = client;
+        this.isReserved = true;
+    }
+
     public RDV(Date start_time, int duration, String name, Professional professional) {
         this.start_time = start_time;
         this.duration = duration;
         this.name = name;
         this.professional = professional;
+        this.isReserved = false;
     }
 
     public RDV(){};
 
-    private Client client;
-
-    private Professional professional;
 
     @Id
     @GeneratedValue
