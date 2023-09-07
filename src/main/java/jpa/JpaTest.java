@@ -1,7 +1,10 @@
 package jpa;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
 
 import java.util.Date;
 import java.util.List;
@@ -27,6 +30,8 @@ public class JpaTest {
 		try
 		{
 			jpa.createUsersAndRDV();
+
+			jpa.listUser();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,6 +95,13 @@ public class JpaTest {
 		}
 	}
 
+	public void listUser(){
+		List<User> listUsers = manager.createQuery("select u from User u", User.class).getResultList();
+		System.out.println("num of users: "+ listUsers.size());
 
+		for(User user: listUsers){
+			System.out.println("user: "+user.getName());
+		}
+	}
 
 }
