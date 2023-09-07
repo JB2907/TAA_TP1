@@ -2,7 +2,11 @@ package jpa;
 
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+import java.util.Date;
 
 public class JpaTest {
 
@@ -16,14 +20,30 @@ public class JpaTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-			EntityManager manager = EntityManagerHelper.getEntityManager();
-
-		JpaTest test = new JpaTest(manager);
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
+		EntityManager manager = factory.createEntityManager();
 
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
-		try {
+		try
+		{
+			Professional p = new Professional("admin@admin.org", "admin123", "admin");
+			manager.persist(p);
 
+			Client c = new Client("clientmail", "clientpw", "client");
+			manager.persist(c);
+
+			RDV r = new RDV();
+			r.setDuration(30);
+			r.setName("Finances");
+			r.setProfessional(p);
+			r.setStart_time(new Date());
+			r.setClient(c);
+			manager.persist(r);
+//			User u = new User("admin", "admin123");
+//			manager.persist(u);
+//			User u2 = new User("admin", "admin123");
+//			manager.persist(u2);
 			// TODO create and persist entity
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,9 +51,8 @@ public class JpaTest {
 		tx.commit();
 
 			
-   	 manager.close();
-		EntityManagerHelper.closeEntityManagerFactory();
-		System.out.println(".. done");
+   	 	manager.close();
+		factory.close();
 	}
 
 
