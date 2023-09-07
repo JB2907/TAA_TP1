@@ -1,12 +1,10 @@
 package jpa;
 
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 public class JpaTest {
 
@@ -29,33 +27,6 @@ public class JpaTest {
 		try
 		{
 			jpa.createUsersAndRDV();
-//			Professional p = new Professional("admin@admin.org", "admin123", "admin");
-//			manager.persist(p);
-//
-//			Client c = new Client("clientmail", "clientpw", "client");
-//			manager.persist(c);
-//
-//			RDV r = new RDV();
-//			r.setDuration(30);
-//			r.setName("Finances");
-//			r.setProfessional(p);
-//			r.setStart_time(new Date());
-//			r.setClient(c);
-//			manager.persist(r);
-//
-//			RDV r2 = new RDV();
-//			r2.setDuration(50);
-//			r2.setName("Finances");
-//			r2.setProfessional(p);
-//			r2.setStart_time(new Date());
-//			r2.setClient(c);
-//			c.getAppointments().add(r2);
-//			p.getAppointments().add(r2);
-//			manager.persist(r2);
-//			manager.merge(c);
-//			manager.merge(p);
-
-			// TODO create and persist entity
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,6 +79,15 @@ public class JpaTest {
 		manager.persist(r3);
 		manager.persist(r4);
 
+		getRDVFromClient(c4);
+
+	}
+
+	public void getRDVFromClient(Client c) {
+		List<RDV> queryResult = manager.createQuery("SELECT r FROM RDV r WHERE r.client = :client", RDV.class).setParameter("client", c).getResultList();
+		for (RDV r : queryResult) {
+			System.out.println(r.getDuration());
+		}
 	}
 
 
