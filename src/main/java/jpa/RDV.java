@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "RDV")
+@NamedQuery(name = "getRDVFromAProfessional", query = "SELECT r FROM RDV r WHERE r.professional = :pro")
 public class RDV {
     private Long id;
 
@@ -91,5 +92,13 @@ public class RDV {
 
     public void setProfessional(Professional professional) {
         this.professional = professional;
+    }
+
+    public boolean isReserved() {
+        return isReserved;
+    }
+
+    public void setReserved(boolean reserved) {
+        isReserved = reserved;
     }
 }
