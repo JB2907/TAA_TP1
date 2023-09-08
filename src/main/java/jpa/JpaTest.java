@@ -151,7 +151,7 @@ public class JpaTest {
 	public void getRDVFromClient(Client c) {
 		List<RDV> queryResult = manager.createQuery("SELECT r FROM RDV r WHERE r.client = :client", RDV.class).setParameter("client", c).getResultList();
 		for (RDV r : queryResult) {
-			System.out.println(r.getName());
+			System.out.println("Le RDV du client " + r.getClient().getName() + " intitulé " + r.getName() + " aura lieu à " + r.getStart_time() + " avec le pro " + r.getProfessional().getName());
 		}
 	}
 
@@ -159,7 +159,7 @@ public class JpaTest {
 		TypedQuery<RDV> q = manager.createNamedQuery("getRDVFromAProfessional", RDV.class);
 		q.setParameter("pro", p);
 		for (RDV r : q.getResultList()) {
-			System.out.println(r.getName());
+			System.out.println("Le RDV du professionnel " + r.getProfessional().getName() + " intitulé " + r.getName() + " aura lieu à " + r.getStart_time());
 		}
 	}
 
