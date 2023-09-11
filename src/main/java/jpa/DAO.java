@@ -95,13 +95,15 @@ public class DAO {
         }
     }
 
-    public void getAllUsers(){
+    public List<User> getAllUsers(){
         List<User> listUsers = manager.createQuery("select u from User u", User.class).getResultList();
         System.out.println("num of users: "+ listUsers.size());
 
         for(User user: listUsers){
             System.out.println("user: "+user.getName());
         }
+
+        return listUsers;
     }
 
     public void createProfessional(String email, String password, String name) {
