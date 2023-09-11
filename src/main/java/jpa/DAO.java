@@ -104,6 +104,16 @@ public class DAO {
         }
     }
 
+    public void createProfessional(String email, String password, String name) {
+        User newProfessional = new Professional(email, password, name);
+        manager.persist(newProfessional);
+    }
+
+    public void createClient(String email, String password, String name) {
+        User newClient = new Client(email, password, name);
+        manager.persist(newClient);
+    }
+
     public void getAllClient() {
         List<Client> listClient = manager.createQuery("select c from Client c", Client.class).getResultList();
 

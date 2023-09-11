@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un utilisateur</title>
+</head>
+<body>
+    <form method="POST" action="/addUser">
+        Name: <input type="text" size="20" name="name"><br>
+        Email: <input type="email" size="20" name="email"><br>
+        Password: <input type="password" size="20" name="password"><br>
+        <div>
+            <input type="radio" id="professional" name="status" value="professional">
+            <label for="professional">Professional</label>
+            <input type="radio" id="client" name="status" value="client">
+            <label for="client">Client</label>
+        </div>
+        <input type="submit" value="Ajouter">
+    </form>
+</body>
+</html>
