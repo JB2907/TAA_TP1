@@ -34,3 +34,5 @@ On retrouve dans la base, les données suivantes :
 ### Lancer les servlets
 * Clic droit sur le projet. Run as -> Maven build... -> Mettre compile jetty:run
 * Pour afficher les utilisateurs rendez-vous ici : http://localhost:8080/user
+
+![table_servlet.png](img%2Ftable_servlet.png)
