@@ -28,3 +28,9 @@ On retrouve dans la base, les données suivantes :
 ![table1.png](img%2Ftable1.png)
 * Table RDV :<br/>
 ![table2.png](img%2Ftable2.png)
+
+## TP2 - Partie 1 : Servlets (branche tp2)
+
+### Lancer les servlets
+* Clic droit sur le projet. Run as -> Maven build... -> Mettre compile jetty:run
+* Pour afficher les utilisateurs rendez-vous ici : http://localhost:8080/user
