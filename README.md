@@ -29,7 +29,7 @@ On retrouve dans la base, les données suivantes :
 * Table RDV :<br/>
 ![table2.png](img%2Ftable2.png)
 
-## TP2 - Partie 1 : Servlets (branche tp2)
+## TP2 - Partie 1 : Servlets
 
 ### Lancer les servlets
 * Clic droit sur le projet. Run as -> Maven build... -> Mettre compile jetty:run
